@@ -21,12 +21,13 @@ def build_table(forecast):
     table.add_column("Date",["High","Low","Forecast","Humidity","Wind Speed"])
     for day in range(len(forecast)):
         date = time.strftime('%Y.%m.%d', time.localtime(forecast[day]['dt']))
+        degree = u'\N{DEGREE SIGN}'.encode('utf-8')
         high = forecast[day]['temp']['max']
         low = forecast[day]['temp']['min']
         desc = forecast[day]['weather'][0]['description']
         humidity = forecast[day]['humidity']
         wind = forecast[day]['speed']
-        table.add_column("{}".format(date),["{}".format(high),"{}".format(low),"{}".format(desc),"{}".format(humidity),"{}".format(wind)])
+        table.add_column("{}".format(date),["{}{}F".format(high,degree),"{}{}F".format(low,degree),"{}".format(desc),"{}%".format(humidity),"{} MPH".format(wind)])
 
     return table
 
