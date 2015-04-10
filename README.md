@@ -4,6 +4,14 @@ These are just projects that I am writing in my spare time to get better aquante
 
 weather.py
 ----------
+	usage: weather.py [-h] -z ZIPCODE
+
+	Show the 10 day forecast
+
+	optional arguments:
+	-h, --help			show this help message and exit
+	-z ZIPCODE, --zipcode ZIPCODE
+						zipcode of the area to retrieve the forecast for
 
 ./weather.py 10001
 
