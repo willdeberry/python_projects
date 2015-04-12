@@ -11,53 +11,57 @@ def letter_to_num(letter):
 	numbers = {'r': 0,'p': 1,'s': 2}
 	return numbers[letter]
 
-def cpu_choice():
-	return randint(0,2)
+class Game:
+	player_score = 0
+	cpu_score = 0
 
-def is_valid_selection(selection):
-	if selection in ('r','p','s'):
-		return True
+	def cpu_choice(self):
+		return randint(0,2)
 
-	print('Invalid selection. Please select again...')
-	return False
+	def is_valid_selection(self,selection):
+		if selection in ('r','p','s'):
+			return True
 
-def user_choice():
-	return raw_input("Please choose (r)ock, (p)aper, (s)cissors: ").lower()[0]
+		print('Invalid selection. Please select again...')
+		return False
 
-def who_wins(user,cpu):
-	global player_score
-	global cpu_score
-	result = user - cpu
-	if result == -2 or result == 1:
-		winner = 'You win!'
-		player_score += 1
-	elif result == -1 or result == 2:
-		winner = 'You lose'
-		cpu_score += 1
-	else:
-		winner = "It's a tie"
+	def user_choice(self):
+		return raw_input("Please choose (r)ock, (p)aper, (s)cissors: ").lower()[0]
 
-	return winner
+	def who_wins(self,user,cpu):
+		result = user - cpu
+		if result == -2 or result == 1:
+			winner = 'You win!'
+			self.player_score += 1
+		elif result == -1 or result == 2:
+			winner = 'You lose'
+			self.cpu_score += 1
+		else:
+			winner = "It's a tie"
+
+		return winner
+
+	def play(self):
+		user_selection = self.user_choice()
+		cpu_selection = self.cpu_choice()
+		table = PrettyTable()
+		if self.is_valid_selection(user_selection):
+			result = self.who_wins(letter_to_num(user_selection),cpu_selection)
+			table.add_column("Score",["CPU Picks","Results"])
+			table.add_column("Player ({} - {}) CPU".format(self.player_score,self.cpu_score),["{}".format(num_to_letter(cpu_selection)),"{}".format(result)])
+			print(table)
+			return True
+
+		return False
 
 def main():
-	global player_score
-	global cpu_score
 	answer = raw_input('Ready to play a game?[y/n] ').lower()
+	start_game = Game()
 	while answer in ('y','yes'):
-		user_selection = user_choice()
-		cpu_selection = cpu_choice()
-		table = PrettyTable()
-		if is_valid_selection(user_selection):
-			result = who_wins(letter_to_num(user_selection),cpu_selection)
-			table.add_column("Score",["CPU Picks","Results"])
-			table.add_column("Player ({} - {}) CPU".format(player_score,cpu_score),["{}".format(num_to_letter(cpu_selection)),"{}".format(result)])
-			print(table)
-		else:
+		if not start_game.play():
 			continue
 
 		answer = raw_input('How about another round?[y/n] ')
 
 if __name__ == "__main__":
-	player_score = 0
-	cpu_score = 0
 	main()
