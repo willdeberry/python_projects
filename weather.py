@@ -15,8 +15,9 @@ def get_days(data):
     ''' Return full list of days from the weather json '''
     return data['list']
 
-def build_table(forecast):
+def build_table(json,forecast):
     ''' Iterate over list and build table a column for each day '''
+    header = PrettyTable([json['city']['name']])
     table = PrettyTable()
     table.add_column("Date",["High","Low","Forecast","Humidity","Wind Speed"])
     for day in range(len(forecast)):
@@ -29,12 +30,13 @@ def build_table(forecast):
         wind = forecast[day]['speed']
         table.add_column("{}".format(date),["{}{}F".format(high,degree),"{}{}F".format(low,degree),"{}".format(desc),"{}%".format(humidity),"{} MPH".format(wind)])
 
-    return table
+    return (header,table)
 
 def main(args):
     weather = get_weather(args.zipcode)
     days = get_days(weather)
-    print(build_table(days))
+    header, table = build_table(weather,days)
+    print("{}\n{}".format(header, table))
 
 if __name__ == "__main__":
     parser = ArgumentParser(description='Show the 10 day forecast')
