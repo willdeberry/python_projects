@@ -22,11 +22,16 @@ class Game:
 		if selection in ('r','p','s'):
 			return True
 
+		return False
+
 		print('Invalid selection. Please select again...')
 		return False
 
 	def user_choice(self):
-		return raw_input("Please choose (r)ock, (p)aper, (s)cissors: ").lower()[0]
+		try:
+			return raw_input("Please choose (r)ock, (p)aper, (s)cissors: ").lower()[0]
+		except IndexError:
+			return False
 
 	def who_wins(self,user,cpu):
 		result = user - cpu
@@ -55,13 +60,13 @@ class Game:
 		return False
 
 def main():
-	answer = raw_input('Ready to play a game?[y/n] ').lower()
+	answer = raw_input('Ready to play a game?[Y/n] ').lower() or 'y'
 	start_game = Game()
 	while answer in ('y','yes'):
 		if not start_game.play():
 			continue
 
-		answer = raw_input('How about another round?[y/n] ')
+		answer = raw_input('How about another round?[Y/n] ') or 'y'
 
 if __name__ == "__main__":
 	main()
