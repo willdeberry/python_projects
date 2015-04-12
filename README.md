@@ -38,3 +38,19 @@ rps.py (Rock, Paper, Scissors)
 	|  Results  |     It's a tie     |
 	+-----------+--------------------+
 	How about another round?[y/n]
+
+high_low.py
+-----------
+	usage: high_low.py
+
+	Would you like to play a game?[Y/n] y
+	Pick a number between 0-99: 10
+	Guess Higher...
+	Pick a number between 0-99: 58
+	Guess Lower...
+	Pick a number between 0-99: 56
+	Guess Higher...
+	Pick a number between 0-99: 57
+	Guess Lower...
+	You guess correctly and it only took 4 guess(es)!
+	Would you like to play again?[Y/n]
