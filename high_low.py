@@ -2,10 +2,19 @@
 
 from random import randint
 
+def intro():
+	''' Intro message explaining the game '''
+	print('\nI have picked a number from 1-100, try and guess it.\nAfter each guess, I will let you know if you need to guess higher or lower.\n')
+
 def pick_number():
-	return randint(0,100)
+	''' Pick a number between 1 and 100 '''
+	return randint(0,101)
 
 def player_guess():
+	'''
+	Prompt the player to choose a number and then make sure they actually
+	picked a number
+	'''
 	while True:
 		try:
 			return int(raw_input('Pick a number between 0-99: '))
@@ -14,6 +23,7 @@ def player_guess():
 			continue
 
 def high_low(number,guess):
+	''' Is the number higher or lower than the number I have picked '''
 	result = number - guess
 	if result > 0:
 		print('Guess Higher...')
@@ -23,7 +33,9 @@ def high_low(number,guess):
 	return result
 
 def main():
+	''' Play the game and give feeback to the player '''
 	answer = raw_input('Would you like to play a game?[Y/n] ').lower() or 'y'
+	intro()
 	while answer in ('y','yes'):
 		guesses = 0
 		number = pick_number()

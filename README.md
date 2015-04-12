@@ -43,7 +43,11 @@ high_low.py
 -----------
 	usage: high_low.py
 
-	Would you like to play a game?[Y/n] y
+	Would you like to play a game?[Y/n] 
+
+	I have picked a number from 1-100, try and guess it.
+	After each guess, I will let you know if you need to guess higher or lower.
+
 	Pick a number between 0-99: 10
 	Guess Higher...
 	Pick a number between 0-99: 58
