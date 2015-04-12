@@ -24,3 +24,17 @@ weather.py
 	|  Humidity  |    89%     |      96%      |     84%      |      0%      |      0%      |       0%      |      0%      |      0%      |      0%      |       0%      |
 	| Wind Speed |  6.61 MPH  |    3.28 MPH   |   6.52 MPH   |   2.7 MPH    |   6.46 MPH   |    6.89 MPH   |  12.23 MPH   |   7.37 MPH   |   8.01 MPH   |    7.43 MPH   |
 	+------------+------------+---------------+--------------+--------------+--------------+---------------+--------------+--------------+--------------+---------------+
+
+rps.py (Rock, Paper, Scissors)
+------------------------------
+	usage: rps.py
+
+	Ready to play a game?[y/n] y
+	Please choose (r)ock, (p)aper, (s)cissors: r
+	+-----------+--------------------+
+	|   Score   | Player (0 - 0) CPU |
+	+-----------+--------------------+
+	| CPU Picks |        rock        |
+	|  Results  |     It's a tie     |
+	+-----------+--------------------+
+	How about another round?[y/n]
